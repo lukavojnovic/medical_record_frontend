@@ -20,14 +20,14 @@ const Navigation = () => {
     return (
         <Menu onClick={handleClick} selectedKeys={[current]} mode='horizontal'>
             <Menu.Item
-                key='mail'
-                onClick={() => history.push("/")}
+                key='patient'
+                onClick={() => history.push("/patient")}
                 icon={<ContactsOutlined />}
             >
                 Personal Data
             </Menu.Item>
             <Menu.Item
-                key='app'
+                key='doctor'
                 onClick={() => history.push("/doctors")}
                 icon={<MedicineBoxOutlined />}
             >
@@ -40,7 +40,7 @@ const Navigation = () => {
                 title='User' //username iz baze
             >
                 {/* <Menu.ItemGroup title='Item 1'> */}
-                <Menu.Item key='setting:1'>Log Out</Menu.Item>
+                <Menu.Item key='setting:1' onClick={() => history.push("/")}>Log Out</Menu.Item>
                 {/* </Menu.ItemGroup> */}
             </SubMenu>
         </Menu>

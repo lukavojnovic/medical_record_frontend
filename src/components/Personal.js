@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import axios from "../axios";
 import moment from 'moment';
 import male from '../images/male.png'
@@ -9,8 +9,18 @@ const getPatient = (id) => axios.get(`patient/${id}`);
 
 const Personal = () => {
 
-    const patient = useQuery('patient', () => getPatient('951242a4-ccbf-47e0-b83f-969be083bccd'));
-    console.log(patient.data?.data)
+    const [lastParam, setLastParam] = useState('')
+
+    useEffect(()=>{
+        const parts = window.location.href.split('/');
+        const last = parts.pop() || parts.pop();
+        setLastParam(last)
+        // console.log(last ? last : "empty")
+    },[])
+
+    console.log(lastParam)
+    const patient = useQuery('patient', () => getPatient(window.location.href.split('/').pop()));
+    // console.log(patient.data?.data)
     return (
         <div className="block sm:flex w-full mt-0 text-blue-900">
             <div className='min-h-screen justify-around xs:block p-2 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 bg-blue-100 '>
@@ -47,10 +57,10 @@ const Personal = () => {
                     </ul>
                 </div>
                 <div className=' mt-2 text-justify border-b-2 border-dotted	border-blue-300'>
-                    <p className='text-lg m-0 pl-2'>Contact</p>
+                    <p className='text-lg m-0 pl-2'>Weight & height</p>
                     <ul className='pl-2'>
-                        <li><span className='font-medium'>Email: </span>{patient.data?.data.email}</li>
-                        <li><span className='font-medium'>Phone: </span>{patient.data?.data.phoneNumber}</li>
+                        <li><span className='font-medium'>Weight: </span>{patient.data?.data.weight} kg</li>
+                        <li><span className='font-medium'>Height: </span>{patient.data?.data.height} cm</li>
                     </ul>
                 </div>
             </div>
