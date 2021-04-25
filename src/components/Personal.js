@@ -67,8 +67,6 @@ const Personal = () => {
             </div>
             </div>
             <div className='pl-2 w-full bg-gray-50'>
-                urekov dio ide ovdje
-                {console.log(patient?.data?.data.recordId)}
                 {patient?.data?.data.recordId ? <Records id={patient?.data?.data.recordId}/> : <>loading</>}
 
             </div>

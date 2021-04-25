@@ -80,7 +80,7 @@ export const CardComponent = ({ type, value, children, id }) => {
                 title: 'Action',
                 dataIndex: 'id',
                 key: 'x',
-                render: (text, record, index) => <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
+                render: (text, record, index) => ROLE === "PATIENT" ? <></>: <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
             },
 
         ];
@@ -95,7 +95,7 @@ export const CardComponent = ({ type, value, children, id }) => {
                 title: 'Action',
                 dataIndex: '',
                 key: 'x',
-                render: (text, record, index) => <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
+                render: (text, record, index) =>ROLE === "PATIENT" ? <></>: <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
             },
 
         ];
@@ -110,7 +110,7 @@ export const CardComponent = ({ type, value, children, id }) => {
                 title: 'Action',
                 dataIndex: '',
                 key: 'x',
-                render: (text, record, index) => <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
+                render: (text, record, index) => ROLE === "PATIENT" ? <></>: <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
             },
 
 
@@ -132,11 +132,11 @@ export const CardComponent = ({ type, value, children, id }) => {
                 dataIndex: 'date',
                 key: 'date',
             },
-            ROLE === "ROLE_PATIENT" ? { title: 'Action' } : {
+            ROLE === "PATIENT" ? { title: 'Action' } : {
                 title: 'Action',
                 dataIndex: '',
                 key: 'x',
-                render: (text, record, index) => <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
+                render: (text, record, index) => ROLE === "PATIENT" ? <></>: <DeleteTwoTone onClick={() => removeItemFromRecord(records, type, record.id).then(response => setRecords(response))} className="deleteIcon" />,
 
             },
 
