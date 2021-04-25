@@ -1,33 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Field, Form, Formik} from "formik"
 import axios from "../axios";
-import {useHistory, useLocation} from "react-router-dom"
-import sha256 from 'sha256'
+import {useHistory} from "react-router-dom"
+import sha256 from "sha256";
 
 const NewDoctorForm = () => {
 
-    // const doctorId = window.location.href.split('/')[4];
-
+    const [state, setState] = useState({})
     const history = useHistory();
 
     const onSubmit = async (values) => {
-        values.password = sha256(values.password)
-        const res = await axios.post('doctor', {...values});
-        if(res){
-            console.log(res)
-            alert("You added new doctor!")
-            history.push(`/doctors`)
-            // const patientId = res.data.id
-            // const addDocToPat = await axios.put(`patient/${patientId}/doctor/${doctorId}`, {});
-            // if(addDocToPat){
-            //     console.log('patient added to doctor')
-            //     history.push(`/doctor/${doctorId}`)
-            // } else {
-            //     console.log('failed adding doc to pat')
-            // }
 
-        }else {
-            console.log("WENT WRONG")
+        try{
+            if(values.password){
+                values.password = sha256(values.password)
+            }
+
+            const res = await axios.post('doctor', {...values});
+            console.log(res)
+            if (res.data.formError) {
+                setState(res.data.formError)
+                console.log(state)
+            } else {
+                alert("You added new doctor!")
+                history.push(`/doctors`)
+            }
+        }catch (e){
+            console.log(e)
         }
 
     }

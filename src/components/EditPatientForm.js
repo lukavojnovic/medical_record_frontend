@@ -13,7 +13,8 @@ const getPatient = (id) => axios.get(`patient/${id}`);
 
 const EditPatientForm = () => {
     const [lastParam, setLastParam] = useState('')
-    // const [data, setData] = useState({})
+    const [state, setState] = useState({});
+
     useEffect(()=>{
         const parts = window.location.href.split('/');
         const last = parts.pop() || parts.pop();
@@ -26,8 +27,9 @@ const EditPatientForm = () => {
     const onSubmit = async (values) => {
         try{
             const res = await axios.put(`patient/${lastParam}`, {...values});
-            if (res.formError) {
-                console.log(res.formError)
+            if (res.data.formError) {
+                setState(res.data.formError)
+                console.log(state)
                 return
             }
 
@@ -96,6 +98,7 @@ const EditPatientForm = () => {
                                                        name='firstName'
                                                        onChange={handleChange}
                                                 />
+                                                {state.firstName? <small className='italic text-red-600'>{state.firstName}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -118,6 +121,7 @@ const EditPatientForm = () => {
                                                        name='lastName'
                                                        onChange={handleChange}
                                                 />
+                                                {state.lastName? <small className='italic text-red-600'>{state.lastName}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -146,6 +150,7 @@ const EditPatientForm = () => {
                                                        name='ssn'
                                                        onChange={handleChange}
                                                 />
+                                                {state.ssn? <small className='italic text-red-600'>{state.ssn}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -157,6 +162,7 @@ const EditPatientForm = () => {
                                                        name='address'
                                                        onChange={handleChange}
                                                 />
+                                                {state.address? <small className='italic text-red-600'>{state.address}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -168,6 +174,7 @@ const EditPatientForm = () => {
                                                        name='city'
                                                        onChange={handleChange}
                                                 />
+                                                {state.city? <small className='italic text-red-600'>{state.city}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -179,6 +186,7 @@ const EditPatientForm = () => {
                                                        name='state'
                                                        onChange={handleChange}
                                                 />
+                                                {state.state? <small className='italic text-red-600'>{state.state}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -190,6 +198,7 @@ const EditPatientForm = () => {
                                                        name='country'
                                                        onChange={handleChange}
                                                 />
+                                                {state.country? <small className='italic text-red-600'>{state.country}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -207,6 +216,7 @@ const EditPatientForm = () => {
                                                     <option value="AB-">AB-</option>
                                                     <option value="AB+">AB+</option>
                                                 </Field>
+                                                {state.bloodGroup? <small className='italic text-red-600'>{state.bloodGroup}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -216,9 +226,9 @@ const EditPatientForm = () => {
                                                        className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="DOB"
                                                        name='dateOfBirth'
-                                                       // value={moment(values.dateOfBirth).format('"yyyy-MM-dd"')}
                                                        onChange={handleChange}
                                                 />
+                                                {state.dateOfBirth? <small className='italic text-red-600'>{state.dateOfBirth}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -230,6 +240,7 @@ const EditPatientForm = () => {
                                                        name='phoneNumber'
                                                        onChange={handleChange}
                                                 />
+
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -241,6 +252,7 @@ const EditPatientForm = () => {
                                                        name='email'
                                                        onChange={handleChange}
                                                 />
+                                                {state.email? <small className='italic text-red-600'>{state.email}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
