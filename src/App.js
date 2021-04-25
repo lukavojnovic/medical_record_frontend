@@ -7,6 +7,11 @@ import Personal from "./components/Personal";
 import { ReactQueryDevtools } from 'react-query/devtools'
 import NewPatientForm from "./components/NewPatientForm";
 import Login from "./components/Login";
+import EditPatientForm from "./components/EditPatientForm";
+import AdminDash from "./components/AdminDash";
+import AllDoctors from "./components/AllDoctors";
+import NewDoctorForm from "./components/NewDoctorForm";
+import EditDoctorForm from "./components/EditDoctorForm";
 
 export const queryClient = new QueryClient();
 
@@ -17,17 +22,41 @@ const App = () => {
             <QueryClientProvider client={queryClient}>
                 <Router>
                     <Switch>
+                        <Route path='/admin'>
+                            <Navigation />
+                            <AdminDash/>
+                        </Route>
                         <Route path='/patient/:id'>
                             <Navigation />
                             <Personal/>
                         </Route>
-                        <Route path='/doctors/newpat' exact={true}>
+                        <Route path='/doctor/patient/:id' exact={true}>
+                            <Navigation />
+                            <Personal/>
+                        </Route>
+                        <Route path='/doctor/:id/newpat' exact={true}>
                             <Navigation />
                             <NewPatientForm/>
                         </Route>
-                        <Route path='/doctors' exact={true}>
+                        <Route path='/doctor/:id/editpat'>
+                            <Navigation />
+                            <EditPatientForm/>
+                        </Route>
+                        <Route path='/doctor/:id' exact={true}>
                             <Navigation />
                             <Doctor />
+                        </Route>
+                        <Route path='/doctors' exact={true}>
+                            <Navigation />
+                            <AllDoctors />
+                        </Route>
+                        <Route path='/doctors/newdoc' exact={true}>
+                            <Navigation />
+                            <NewDoctorForm/>
+                        </Route>
+                        <Route path='/doctors/editdoc/:id' exact={true}>
+                            <Navigation />
+                            <EditDoctorForm/>
                         </Route>
                         <Route path='/' exact={true}>
                             <Login />

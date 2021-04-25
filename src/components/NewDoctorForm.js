@@ -1,91 +1,56 @@
 import React from 'react';
 import {Field, Form, Formik} from "formik"
 import axios from "../axios";
-import {useHistory} from "react-router-dom"
-import {notification} from "antd";
-import * as Yup from 'yup';
+import {useHistory, useLocation} from "react-router-dom"
 import sha256 from 'sha256'
 
-const NewPatientForm = () => {
+const NewDoctorForm = () => {
 
-    const doctorId = window.location.href.split('/')[4];
+    // const doctorId = window.location.href.split('/')[4];
 
     const history = useHistory();
 
     const onSubmit = async (values) => {
         values.password = sha256(values.password)
-        try {
-            // console.log(values)
-            const res = await axios.post('patient', {...values});
-            // console.log(res.data.formError)
-            if (res.data.formError) {
-                // alert(JSON.stringify(res.data.formError))
-                Object.entries(res.data.formError).map(([key, value]) => {
-                    console.log(key, value)
-                });
-            } else {
-                console.log(res)
-                const patientId = res.data.id
-                const addDocToPat = await axios.put(`patient/${patientId}/doctor/${doctorId}`, {});
-                if (addDocToPat) {
-                    openNotification()
-                    console.log('patient added to doctor')
-                    history.push(`/doctor/${doctorId}`)
-                } else {
-                    console.log('failed adding doc to pat')
-                }
-            }
+        const res = await axios.post('doctor', {...values});
+        if(res){
+            console.log(res)
+            alert("You added new doctor!")
+            history.push(`/doctors`)
+            // const patientId = res.data.id
+            // const addDocToPat = await axios.put(`patient/${patientId}/doctor/${doctorId}`, {});
+            // if(addDocToPat){
+            //     console.log('patient added to doctor')
+            //     history.push(`/doctor/${doctorId}`)
+            // } else {
+            //     console.log('failed adding doc to pat')
+            // }
 
-
-        } catch (e) {
-            // console.log('here')
-            console.log(e)
+        }else {
+            console.log("WENT WRONG")
         }
 
     }
-
-    const openNotification = () => {
-        notification.success({
-            message: `Success`,
-            description:
-                'Successfully added patient!',
-            placement: "bottomRight"
-        });
-    };
-
-    // const schema = Yup.object().shape({
-    //     firstName: Yup.string().required('First name is required!'),
-    //     middleName: Yup.string().required('Middle name is required!'),
-    //     lastName: Yup.string().required('Last name is required!'),
-    //     ssn: Yup.string().required('SSN is required!'),
-    // });
-
     return (
+        // "firstName": "John",*
+        // "middleName": "Jack",*
+        // "lastName": "Doe",*
+        // "ssn": "000-00-0000",*
+        // "address": "Highway St.",*
+        // "city": "Atlanta",*
+        // "state": "Georgia",*
+        // "country": "USA",*
+        // "dateOfBirth": "1995-02-12T00:00:00.000Z",*
+        // "bloodGroup": "A+",*
+        // "gender": "M",*
+        // "phoneNumber": "00385951234567",
+        // "email": "johndoe@test.com",
+        // "weight": 75.6,
+        // "height": 195
         <>
-            <Formik
-                initialValues={{
-                    firstName: "",
-                    middleName: "",
-                    lastName: "",
-                    ssn: "",
-                    address: "",
-                    city: "",
-                    state: "",
-                    country: "",
-                    dateOfBirth: "",
-                    bloodGroup: "",
-                    gender: "",
-                    phoneNumber: "",
-                    email: "",
-                    weight: 0,
-                    password: "",
-                    height: 0
-                }}
-                // validationSchema={schema}
-                onSubmit={onSubmit}
-            >
+            <Formik initialValues={{}} onSubmit={onSubmit}>
 
-                {({values, handleChange,errors, touched}) => (
+                {({handleChange}) => (
                     <Form>
                         <div className=" sm:max-w-lg sm:w-full sm:mx-auto sm:overflow-hidden">
                             <div className="px-4 py-8 sm:px-10">
@@ -96,7 +61,7 @@ const NewPatientForm = () => {
                                     </div>
                                     <div className="relative flex justify-center text-sm leading-5">
                                         <span className="px-2 text-gray-500 bg-white">
-                                            Adding new patient
+                                            Adding new doctor
                                         </span>
                                     </div>
                                 </div>
@@ -115,18 +80,6 @@ const NewPatientForm = () => {
                                         </div>
                                         <div className="w-full">
                                             <div className=" relative ">
-                                                <h2 className='text-sm text-gray-600'>Middle name</h2>
-                                                <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                                                       placeholder="Middle name"
-                                                       name='middleName'
-                                                       onChange={handleChange}
-                                                />
-
-                                            </div>
-                                        </div>
-                                        <div className="w-full">
-                                            <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Last name</h2>
                                                 <Field type="text"
                                                        className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -134,7 +87,17 @@ const NewPatientForm = () => {
                                                        name='lastName'
                                                        onChange={handleChange}
                                                 />
-
+                                            </div>
+                                        </div>
+                                        <div className="w-full">
+                                            <div className=" relative ">
+                                                <h2 className='text-sm text-gray-600'>Speciality</h2>
+                                                <Field type="text"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                                       placeholder="Speciality"
+                                                       name='speciality'
+                                                       onChange={handleChange}
+                                                />
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -152,17 +115,6 @@ const NewPatientForm = () => {
 
                                                 </div>
 
-                                            </div>
-                                        </div>
-                                        <div className="w-full">
-                                            <div className=" relative ">
-                                                <h2 className='text-sm text-gray-600'>SSN</h2>
-                                                <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                                                       placeholder="SSN"
-                                                       name='ssn'
-                                                       onChange={handleChange}
-                                                />
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -211,23 +163,6 @@ const NewPatientForm = () => {
                                         </div>
                                         <div className="w-full">
                                             <div className=" relative ">
-                                                <h2 className='text-sm text-gray-600'>Blood group</h2>
-                                                <Field onChange={handleChange} name="bloodGroup" component="select"
-                                                       className='border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'>
-                                                    <option value="">Select Blood Group</option>
-                                                    <option value="A-">A-</option>
-                                                    <option value="A+">A+</option>
-                                                    <option value="B-">B-</option>
-                                                    <option value="B+">B+</option>
-                                                    <option value="0-">0-</option>
-                                                    <option value="0+">0+</option>
-                                                    <option value="AB-">AB-</option>
-                                                    <option value="AB+">AB+</option>
-                                                </Field>
-                                            </div>
-                                        </div>
-                                        <div className="w-full">
-                                            <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Date of birth</h2>
                                                 <Field type="date"
                                                        className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -270,41 +205,6 @@ const NewPatientForm = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="w-full">
-                                            <div className=" relative ">
-                                                <h2 className='text-sm text-gray-600'>Weight</h2>
-                                                <div className='flex relative'>
-                                                    <Field type="number"
-                                                           className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                                                           placeholder="Weight"
-                                                           name='weight'
-                                                           onChange={handleChange}
-                                                    />
-                                                    <span
-                                                        className="font-semibold inline-flex  items-center px-3 border-t bg-white border-r border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                                                        kg
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="w-full">
-                                            <div className=" relative ">
-                                                <h2 className='text-sm text-gray-600'>Height</h2>
-                                                <div className='flex relative'>
-
-                                                    <Field type="number"
-                                                           className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                                                           placeholder="Height"
-                                                           name='height'
-                                                           onChange={handleChange}
-                                                    />
-                                                    <span
-                                                        className="font-semibold inline-flex  items-center px-3 border-t bg-white border-r border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                                                        cm
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div>
                                             <span className="block w-full rounded-md ">
                                                 <input type="submit"
@@ -327,4 +227,4 @@ const NewPatientForm = () => {
     )
 }
 
-export default NewPatientForm;
+export default NewDoctorForm;

@@ -1,41 +1,76 @@
 import React from "react";
 import { useFormik } from 'formik';
 import axios from "../axios";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import {notification} from 'antd';
+import sha256 from 'sha256'
 
-const Login = () => {
+const Login = message => {
     const history = useHistory();
 
     const formik = useFormik({
         initialValues: {},
         onSubmit: async (values) => {
-            console.log(values)
-            history.push('/doctors')
-            // try {
-            //     const response = await axios.post('/auth/login', { ...values });
-            //
-            //     if (!response) {
-            //         alert("Došlo je do pogreške.");
-            //         return;
-            //     }
-            //
-            //     localStorage.setItem("user", JSON.stringify(response.data));
-            //     history.push("/admin");
-            // } catch {
-            //     alert("Korisnički podaci nisu ispravni.")
-            // }
+            values.password = sha256(values.password)
+            console.log(values.password)
+            try {
+                const response = await axios.post('/login', { ...values });
+
+                if (!response) {
+                    alert("Došlo je do pogreške.");
+                    return;
+                } else {
+                    let token = JSON.stringify(response.data)
+                    localStorage.setItem("token", token);
+
+                    let decoded = jwt_decode(token);
+                    localStorage.setItem("user", JSON.stringify(decoded));
+
+                    let id = JSON.parse(localStorage.getItem('user')).userId
+                    localStorage.setItem('doctorId', JSON.stringify(id))
+
+                    let role = JSON.parse(localStorage.getItem('user')).role
+
+                    if(role === "ADMINISTRATOR"){
+                        history.push(`/doctors`);
+                    } else if (role === "PATIENT"){
+                        history.push(`/patient/${id}`);
+                    }else if (role === "DOCTOR"){
+                        history.push(`/doctor/${id}`);
+                    }
+
+                }
+
+            } catch(e){
+                openNotification()
+            }
         },
     });
 
+    const openNotification = () => {
+        notification.error({
+            message: `Error`,
+            description:
+                'Wrong credentials. Please check your credentials.',
+            placement: "bottomRight"
+        });
+    };
+
+
     return (
         <div className="h-screen bg-gray-50 pt-24">
+
             <h1 className="text-gray-500 mb-10 text-5xl text-center font-light">Medical record</h1>
             <div
                 className="mx-auto flex flex-col bg-white dark:bg-gray-800 shadow px-4 sm:px-6 md:px-8 lg:px-10 py-8 w-full max-w-md">
                 <div className="font-light self-center text-xl sm:text-2xl text-gray-600 dark:text-white mb-6">
                     Log in
                 </div>
+                {openNotification}
+
                 <div className="mt-8">
+
                     <form onSubmit={formik.handleSubmit} action="#" autoComplete="on">
                         <div className="flex flex-col mb-2">
                             <div className="flex relative ">
@@ -50,11 +85,10 @@ const Login = () => {
                                 </span>
                                 <input
                                     type="username"
-                                    name="username"
+                                    name="email"
                                     onChange={formik.handleChange}
-                                    value={formik.values.username}
                                     className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                                    placeholder="Username" />
+                                    placeholder="Email" />
                             </div>
                         </div>
                         <div className="flex flex-col mb-6">
@@ -72,7 +106,6 @@ const Login = () => {
                                     type="password"
                                     name="password"
                                     onChange={formik.handleChange}
-                                    value={formik.values.password}
                                     className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                                     placeholder="Password" />
                             </div>

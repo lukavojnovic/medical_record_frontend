@@ -18,7 +18,7 @@ const Personal = () => {
         // console.log(last ? last : "empty")
     },[])
 
-    console.log(lastParam)
+    // console.log(lastParam)
     const patient = useQuery('patient', () => getPatient(window.location.href.split('/').pop()));
     // console.log(patient.data?.data)
     return (

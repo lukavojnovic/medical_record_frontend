@@ -1,91 +1,76 @@
-import React from 'react';
-import {Field, Form, Formik} from "formik"
+import React, {useEffect, useState} from 'react';
+import {Form, Formik, Field} from "formik"
 import axios from "../axios";
 import {useHistory} from "react-router-dom"
-import {notification} from "antd";
-import * as Yup from 'yup';
-import sha256 from 'sha256'
+import {useQuery} from "react-query";
+import {notification} from 'antd';
+import moment from "moment";
 
-const NewPatientForm = () => {
 
-    const doctorId = window.location.href.split('/')[4];
 
+const getPatient = (id) => axios.get(`patient/${id}`);
+
+
+const EditPatientForm = () => {
+    const [lastParam, setLastParam] = useState('')
+    // const [data, setData] = useState({})
+    useEffect(()=>{
+        const parts = window.location.href.split('/');
+        const last = parts.pop() || parts.pop();
+        setLastParam(last)
+        // console.log(last ? last : "empty")
+    },[])
     const history = useHistory();
+    const patient = useQuery('patientedit', () => getPatient(window.location.href.split('/').pop()));
 
     const onSubmit = async (values) => {
-        values.password = sha256(values.password)
-        try {
-            // console.log(values)
-            const res = await axios.post('patient', {...values});
-            // console.log(res.data.formError)
-            if (res.data.formError) {
-                // alert(JSON.stringify(res.data.formError))
-                Object.entries(res.data.formError).map(([key, value]) => {
-                    console.log(key, value)
-                });
-            } else {
-                console.log(res)
-                const patientId = res.data.id
-                const addDocToPat = await axios.put(`patient/${patientId}/doctor/${doctorId}`, {});
-                if (addDocToPat) {
-                    openNotification()
-                    console.log('patient added to doctor')
-                    history.push(`/doctor/${doctorId}`)
-                } else {
-                    console.log('failed adding doc to pat')
-                }
+        try{
+            const res = await axios.put(`patient/${lastParam}`, {...values});
+            if (res.formError) {
+                console.log(res.formError)
+                return
             }
 
-
-        } catch (e) {
-            // console.log('here')
+            console.log(res)
+            openNotification()
+            history.push(`/doctor/${window.location.href.split('/')[4]}`)
+        }catch (e){
             console.log(e)
         }
-
     }
-
     const openNotification = () => {
         notification.success({
             message: `Success`,
             description:
-                'Successfully added patient!',
+                'Successfully edited patient',
             placement: "bottomRight"
         });
     };
-
-    // const schema = Yup.object().shape({
-    //     firstName: Yup.string().required('First name is required!'),
-    //     middleName: Yup.string().required('Middle name is required!'),
-    //     lastName: Yup.string().required('Last name is required!'),
-    //     ssn: Yup.string().required('SSN is required!'),
-    // });
-
     return (
+        // "firstName": "John",
+        // "middleName": "Jack",
+        // "lastName": "Doe",
+        // "ssn": "000-00-0000",
+        // "address": "Highway St.",
+        // "city": "Atlanta",
+        // "state": "Georgia",
+        // "country": "USA",
+        // "dateOfBirth": "1995-02-12T00:00:00.000Z",
+        // "bloodGroup": "A+",
+        // "gender": "M",
+        // "phoneNumber": "00385951234567",
+        // "email": "johndoe@test.com",
+        // "weight": 75.6,
+        // "height": 195
         <>
-            <Formik
-                initialValues={{
-                    firstName: "",
-                    middleName: "",
-                    lastName: "",
-                    ssn: "",
-                    address: "",
-                    city: "",
-                    state: "",
-                    country: "",
-                    dateOfBirth: "",
-                    bloodGroup: "",
-                    gender: "",
-                    phoneNumber: "",
-                    email: "",
-                    weight: 0,
-                    password: "",
-                    height: 0
-                }}
-                // validationSchema={schema}
-                onSubmit={onSubmit}
-            >
+            {openNotification}
 
-                {({values, handleChange,errors, touched}) => (
+            <Formik
+                enableReinitialize
+                initialValues={patient?.data?.data}
+                onSubmit={onSubmit}>
+
+                {({values,handleChange}) => (
                     <Form>
                         <div className=" sm:max-w-lg sm:w-full sm:mx-auto sm:overflow-hidden">
                             <div className="px-4 py-8 sm:px-10">
@@ -96,7 +81,7 @@ const NewPatientForm = () => {
                                     </div>
                                     <div className="relative flex justify-center text-sm leading-5">
                                         <span className="px-2 text-gray-500 bg-white">
-                                            Adding new patient
+                                            Editing patient
                                         </span>
                                     </div>
                                 </div>
@@ -122,7 +107,6 @@ const NewPatientForm = () => {
                                                        name='middleName'
                                                        onChange={handleChange}
                                                 />
-
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -134,7 +118,6 @@ const NewPatientForm = () => {
                                                        name='lastName'
                                                        onChange={handleChange}
                                                 />
-
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -233,6 +216,7 @@ const NewPatientForm = () => {
                                                        className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="DOB"
                                                        name='dateOfBirth'
+                                                       // value={moment(values.dateOfBirth).format('"yyyy-MM-dd"')}
                                                        onChange={handleChange}
                                                 />
                                             </div>
@@ -255,17 +239,6 @@ const NewPatientForm = () => {
                                                        className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Email"
                                                        name='email'
-                                                       onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="w-full">
-                                            <div className=" relative ">
-                                                <h2 className='text-sm text-gray-600'>Password</h2>
-                                                <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                                                       placeholder="Password"
-                                                       name='password'
                                                        onChange={handleChange}
                                                 />
                                             </div>
@@ -327,4 +300,4 @@ const NewPatientForm = () => {
     )
 }
 
-export default NewPatientForm;
+export default EditPatientForm;
