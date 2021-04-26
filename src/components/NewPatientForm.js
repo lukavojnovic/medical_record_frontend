@@ -20,7 +20,8 @@ const NewPatientForm = () => {
             }
 
             const res = await axios.post('patient', {...values});
-            // console.log(res.data.formError)
+            console.log(values)
+            console.log(res.data.formError)
             if (res.data.formError) {
                 setState(res.data.formError)
                 console.log(state)
@@ -53,13 +54,6 @@ const NewPatientForm = () => {
         });
     };
 
-    // const schema = Yup.object().shape({
-    //     firstName: Yup.string().required('First name is required!'),
-    //     middleName: Yup.string().required('Middle name is required!'),
-    //     lastName: Yup.string().required('Last name is required!'),
-    //     ssn: Yup.string().required('SSN is required!'),
-    // });
-
     return (
         <>
             <Formik
@@ -81,7 +75,6 @@ const NewPatientForm = () => {
                     password: "",
                     height: 0
                 }}
-                // validationSchema={schema}
                 onSubmit={onSubmit}
             >
 

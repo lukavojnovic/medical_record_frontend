@@ -12,15 +12,14 @@ const NewDoctorForm = () => {
     const onSubmit = async (values) => {
 
         try{
-            if(values.password){
+            if(values.password !== ""){
                 values.password = sha256(values.password)
             }
-
             const res = await axios.post('doctor', {...values});
-            console.log(res)
+            // console.log(res)
             if (res.data.formError) {
                 setState(res.data.formError)
-                console.log(state)
+                // console.log(state)
             } else {
                 alert("You added new doctor!")
                 history.push(`/doctors`)
@@ -31,23 +30,23 @@ const NewDoctorForm = () => {
 
     }
     return (
-        // "firstName": "John",*
-        // "middleName": "Jack",*
-        // "lastName": "Doe",*
-        // "ssn": "000-00-0000",*
-        // "address": "Highway St.",*
-        // "city": "Atlanta",*
-        // "state": "Georgia",*
-        // "country": "USA",*
-        // "dateOfBirth": "1995-02-12T00:00:00.000Z",*
-        // "bloodGroup": "A+",*
-        // "gender": "M",*
-        // "phoneNumber": "00385951234567",
-        // "email": "johndoe@test.com",
-        // "weight": 75.6,
-        // "height": 195
         <>
-            <Formik initialValues={{}} onSubmit={onSubmit}>
+            <Formik initialValues={{
+                firstName: "",
+                lastName: "",
+                address: "",
+                city: "",
+                password: "",
+                state: "",
+                country: "",
+                dateOfBirth: "",
+                speciality: "",
+                gender: "",
+                email: "",
+                phoneNumber: ""
+            }}
+
+            onSubmit={onSubmit}>
 
                 {({handleChange}) => (
                     <Form>
@@ -75,6 +74,7 @@ const NewDoctorForm = () => {
                                                        name='firstName'
                                                        onChange={handleChange}
                                                 />
+                                                {state.firstName? <small className='italic text-red-600'>{state.firstName}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -86,6 +86,7 @@ const NewDoctorForm = () => {
                                                        name='lastName'
                                                        onChange={handleChange}
                                                 />
+                                                {state.lastName? <small className='italic text-red-600'>{state.lastName}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -97,6 +98,7 @@ const NewDoctorForm = () => {
                                                        name='speciality'
                                                        onChange={handleChange}
                                                 />
+                                                {state.speciality? <small className='italic text-red-600'>{state.speciality}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -125,6 +127,7 @@ const NewDoctorForm = () => {
                                                        name='address'
                                                        onChange={handleChange}
                                                 />
+                                                {state.address? <small className='italic text-red-600'>{state.address}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -136,6 +139,7 @@ const NewDoctorForm = () => {
                                                        name='city'
                                                        onChange={handleChange}
                                                 />
+                                                {state.city? <small className='italic text-red-600'>{state.city}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -147,6 +151,7 @@ const NewDoctorForm = () => {
                                                        name='state'
                                                        onChange={handleChange}
                                                 />
+                                                {state.city? <small className='italic text-red-600'>{state.city}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -158,6 +163,7 @@ const NewDoctorForm = () => {
                                                        name='country'
                                                        onChange={handleChange}
                                                 />
+                                                {state.country? <small className='italic text-red-600'>{state.country}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -169,6 +175,7 @@ const NewDoctorForm = () => {
                                                        name='dateOfBirth'
                                                        onChange={handleChange}
                                                 />
+                                                {state.dateOfBirth? <small className='italic text-red-600'>{state.dateOfBirth}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -180,6 +187,7 @@ const NewDoctorForm = () => {
                                                        name='phoneNumber'
                                                        onChange={handleChange}
                                                 />
+                                                {state.phoneNumber? <small className='italic text-red-600'>{state.phoneNumber}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -191,6 +199,7 @@ const NewDoctorForm = () => {
                                                        name='email'
                                                        onChange={handleChange}
                                                 />
+                                                {state.email? <small className='italic text-red-600'>{state.email}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -202,6 +211,7 @@ const NewDoctorForm = () => {
                                                        name='password'
                                                        onChange={handleChange}
                                                 />
+                                                {state.password? <small className='italic text-red-600'>{state.password}</small> : <></>}
                                             </div>
                                         </div>
                                         <div>
