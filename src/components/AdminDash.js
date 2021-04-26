@@ -3,7 +3,7 @@ import {Menu} from "antd";
 import {ContactsOutlined, MedicineBoxOutlined, UserOutlined,} from "@ant-design/icons";
 import {useHistory} from "react-router";
 
-const role = JSON.parse(localStorage.getItem('user')).role
+// const role = JSON.parse(localStorage.getItem('user')).role
 
 const AdminDash = () => {
 

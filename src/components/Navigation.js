@@ -3,7 +3,7 @@ import {Menu} from "antd";
 import {ContactsOutlined, UserOutlined,} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
 
-const role = JSON.parse(localStorage.getItem('user')).role
+const role = JSON.parse(localStorage.getItem('user'))?.role
 
 const Navigation = () => {
     const history = useHistory();

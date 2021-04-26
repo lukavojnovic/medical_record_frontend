@@ -67,10 +67,7 @@ const Login = message => {
                 <div className="font-light self-center text-xl sm:text-2xl text-gray-600 dark:text-white mb-6">
                     Log in
                 </div>
-                {openNotification}
-
                 <div className="mt-8">
-
                     <form onSubmit={formik.handleSubmit} action="#" autoComplete="on">
                         <div className="flex flex-col mb-2">
                             <div className="flex relative ">
