@@ -2,7 +2,6 @@ import axios from 'axios';
 
 let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).token : "No token";
 
-// console.log(JSON.parse(localStorage.getItem('token')).token)
 export const getRecords = async (recordId) => {
     try {
         return await axios.get('http://localhost:4321/record/' + recordId,
@@ -33,7 +32,7 @@ export const updateData = (data, record, type) => {
         return [...data, { id: record.id, name: record.name, prescription: record.prescription, date: splittedDate }]
 
     } else if (splittedType === "note") {
-        return [...data, { id: record.id, name: record.name }]
+        return [...data, { id: record.id, note: record.name }]
 
     }
 
@@ -74,6 +73,8 @@ export const setRecord = async (recordId, type, record) => {
             let id = response.data.id;
             let name = response.data.note;
             let returnObject = { id, name };
+          
+            
             return returnObject;
 
         } catch (error) {
@@ -168,14 +169,14 @@ export const removeItemFromRecord = async (data, type, id) => {
 
 export const validate = (word, type) => {
     let regexOnlyAlphabet = new RegExp("/^[A-Za-z]+$/");
-    let regexLettersAndNumbers = new RegExp("/^[a-z0-9]+$/i");
+    let regexLettersAndNumbers = new RegExp("^[A-Z a-z 0-9_-]*$");
     let result;
-    if (type === "letters") {
+    if (type === "letters" && word!=="") {
         result = regexOnlyAlphabet.test(word);
         return result;
-    } else if (type === "lettersAndNumbers") {
+    } else if (type === "lettersAndNumbers" && word!=="") {
         result = regexLettersAndNumbers.test(word);
         return result;
-    }
+    }else return false;
 }
 

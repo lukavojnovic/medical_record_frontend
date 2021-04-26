@@ -95,7 +95,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>First name</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="First name"
                                                        name='firstName'
                                                        onChange={handleChange}
@@ -108,7 +108,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Middle name</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Middle name"
                                                        name='middleName'
                                                        onChange={handleChange}
@@ -120,7 +120,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Last name</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Last name"
                                                        name='lastName'
                                                        onChange={handleChange}
@@ -150,7 +150,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>SSN</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="SSN"
                                                        name='ssn'
                                                        onChange={handleChange}
@@ -163,7 +163,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Address</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Address"
                                                        name='address'
                                                        onChange={handleChange}
@@ -176,7 +176,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>City</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="City"
                                                        name='city'
                                                        onChange={handleChange}
@@ -189,7 +189,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>State</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="State"
                                                        name='state'
                                                        onChange={handleChange}
@@ -202,7 +202,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Country</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Country"
                                                        name='country'
                                                        onChange={handleChange}
@@ -215,7 +215,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Blood group</h2>
                                                 <Field onChange={handleChange} name="bloodGroup" component="select"
-                                                       className='border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent'>
+                                                       className='border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'>
                                                     <option value="">Select Blood Group</option>
                                                     <option value="A-">A-</option>
                                                     <option value="A+">A+</option>
@@ -234,7 +234,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Date of birth</h2>
                                                 <Field type="date"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="DOB"
                                                        name='dateOfBirth'
                                                        onChange={handleChange}
@@ -247,7 +247,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Phone number</h2>
                                                 <Field type="tel"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Phone number"
                                                        name='phoneNumber'
                                                        onChange={handleChange}
@@ -258,7 +258,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Email</h2>
                                                 <Field type="email"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Email"
                                                        name='email'
                                                        onChange={handleChange}
@@ -271,7 +271,7 @@ const NewPatientForm = () => {
                                             <div className=" relative ">
                                                 <h2 className='text-sm text-gray-600'>Password</h2>
                                                 <Field type="text"
-                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                       className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                        placeholder="Password"
                                                        name='password'
                                                        onChange={handleChange}
@@ -285,7 +285,7 @@ const NewPatientForm = () => {
                                                 <h2 className='text-sm text-gray-600'>Weight</h2>
                                                 <div className='flex relative'>
                                                     <Field type="number"
-                                                           className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                           className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                            placeholder="Weight"
                                                            name='weight'
                                                            onChange={handleChange}
@@ -303,7 +303,7 @@ const NewPatientForm = () => {
                                                 <div className='flex relative'>
 
                                                     <Field type="number"
-                                                           className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                                                           className="border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                                                            placeholder="Height"
                                                            name='height'
                                                            onChange={handleChange}

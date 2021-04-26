@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "../axios";
 import moment from 'moment';
 import {notification, Table} from 'antd';
@@ -13,6 +13,7 @@ const getAllDoctors = () => axios.get('doctors');
 const AllDoctors = () => {
     const history = useHistory();
 
+   
     const doctors = useQuery('doctors', () => getAllDoctors());
 
     const handleDelete = async (id) => {

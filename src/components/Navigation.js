@@ -3,6 +3,7 @@ import {Menu} from "antd";
 import {ContactsOutlined, UserOutlined,} from "@ant-design/icons";
 import {useHistory} from "react-router-dom";
 
+const role = JSON.parse(localStorage.getItem('user'))?.role
 
 const Navigation = () => {
     const history = useHistory();
@@ -22,7 +23,7 @@ const Navigation = () => {
     }
 
     const renderAdminNav = () => {
-        const role = JSON.parse(localStorage.getItem('user'))?.role
+        let user = JSON.parse(localStorage.getItem('user')).role
         if (role === "ADMINISTRATOR") {
             return (
                 <>
@@ -36,7 +37,7 @@ const Navigation = () => {
                     <SubMenu
                         key='SubMenu'
                         icon={<UserOutlined/>}
-                        title={role} //username iz baze
+                        title={user} //username iz baze
                     >
                         <Menu.Item key='setting:1' onClick={() => handleLogOut()}>Log Out</Menu.Item>
                     </SubMenu>
@@ -55,7 +56,7 @@ const Navigation = () => {
                     <SubMenu
                         key='SubMenu'
                         icon={<UserOutlined/>}
-                        title={role} //username iz baze
+                        title={user} //username iz baze
                     >
                         <Menu.Item key='setting:1' onClick={() => handleLogOut()}>Log Out</Menu.Item>
                     </SubMenu>
@@ -74,7 +75,7 @@ const Navigation = () => {
                 <SubMenu
                     key='SubMenu'
                     icon={<UserOutlined/>}
-                    title={role} //username iz baze
+                    title={user} //username iz baze
                 >
                     <Menu.Item key='setting:1' onClick={() => handleLogOut()}>Log Out</Menu.Item>
                 </SubMenu>

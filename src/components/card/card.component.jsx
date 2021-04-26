@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Card, Col, Table, Form, Input, DatePicker, Button, Alert } from 'antd';
+import { Card, Col, Table, Form, Input, DatePicker, Button, Alert, notification } from 'antd';
 import { ModalComponent } from '../modal/modal.component'
-import { removeItemFromRecord, setRecord, splitForCards, updateData, } from '../../utils/utils';
-import { DeleteTwoTone, } from '@ant-design/icons';
+import { removeItemFromRecord, setRecord, splitForCards, updateData, validate, } from '../../utils/utils';
+import { DeleteTwoTone,    RadiusBottomrightOutlined,} from '@ant-design/icons';
 import moment from 'moment'
 import './card.styles.scss';
 
@@ -32,8 +32,9 @@ export const CardComponent = ({ type, value, children, id }) => {
         setPrescription('');
         setDate(moment());
     }
+
     const onSubmit = (type) => {
-        if (name !== "" || prescription !== '') {
+        if (validate(name, "lettersAndNumbers") || validate(prescription,"lettersAndNumbers")) {
             
             if (type === "diagnosis" || type === "immunizations") {
                 setRecord(id, type, { date: date, name: name }).then((response) => { setRecords(updateData(records, response, type)); form.resetFields(); })
@@ -47,10 +48,21 @@ export const CardComponent = ({ type, value, children, id }) => {
                 setRecord(id, type, { name: name, date: date, prescription: prescription }).then((response) => { setRecords(updateData(records, response, type)); form.resetFields() })
 
             }
-        } else { alert("Please, fill all fields for " + splitForCards(type)) }
+        } else { openNotification(type,"bottomRight") }
     }
 
+    const openNotification = (name,placement) => {
+        notification["error"]( {
+          message: 'Error',
+          description:
+            'Please, fill all fields properly for ' + splitForCards(name)+', only letters, numbers and "-" are allowed. ',
+          duration: 4,
+          placement
+          
+        });
+        
 
+    };
     const layout = {
         labelCol: {
             span: 8,
