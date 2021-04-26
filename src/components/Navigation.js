@@ -15,6 +15,13 @@ const Navigation = () => {
         setCurrent(e.key);
     };
 
+    const handleLogOut = () => {
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
+        localStorage.removeItem('doctorId')
+        history.push("/")
+    }
+
     const renderAdminNav = () => {
         let user = JSON.parse(localStorage.getItem('user')).role
         if (role === "ADMINISTRATOR") {
@@ -32,7 +39,7 @@ const Navigation = () => {
                         icon={<UserOutlined/>}
                         title={user} //username iz baze
                     >
-                        <Menu.Item key='setting:1' onClick={() => history.push("/")}>Log Out</Menu.Item>
+                        <Menu.Item key='setting:1' onClick={() => handleLogOut()}>Log Out</Menu.Item>
                     </SubMenu>
                 </>
             )
@@ -51,7 +58,7 @@ const Navigation = () => {
                         icon={<UserOutlined/>}
                         title={user} //username iz baze
                     >
-                        <Menu.Item key='setting:1' onClick={() => history.push("/")}>Log Out</Menu.Item>
+                        <Menu.Item key='setting:1' onClick={() => handleLogOut()}>Log Out</Menu.Item>
                     </SubMenu>
                 </>
             )
@@ -70,7 +77,7 @@ const Navigation = () => {
                     icon={<UserOutlined/>}
                     title={user} //username iz baze
                 >
-                    <Menu.Item key='setting:1' onClick={() => history.push("/")}>Log Out</Menu.Item>
+                    <Menu.Item key='setting:1' onClick={() => handleLogOut()}>Log Out</Menu.Item>
                 </SubMenu>
             </>
             )

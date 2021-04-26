@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMWZlYmRlYy1mNWU3LTQ3NDMtODM2OS02ZDA5NTIyOTYxOTEiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbGUiOiJBRE1JTklTVFJBVE9SIiwiaWF0IjoxNjE5MzY5NDU3LCJleHAiOjE2MTkzNzMwNTd9.fEFCo4-sH0yA3acw3cs7J8XxUfNqs7ik0Jaq7kYPxGk";
+let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).token : "No token";
 
-
+// console.log(JSON.parse(localStorage.getItem('token')).token)
 export const getRecords = async (recordId) => {
     try {
         return await axios.get('http://localhost:4321/record/' + recordId,

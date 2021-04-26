@@ -3,7 +3,6 @@ import {Field, Form, Formik} from "formik"
 import axios from "../axios";
 import {useHistory} from "react-router-dom"
 import {notification} from "antd";
-import * as Yup from 'yup';
 import sha256 from "sha256";
 
 const NewPatientForm = () => {

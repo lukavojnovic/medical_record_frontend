@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Form, Formik, Field} from "formik"
 import axios from "../axios";
-import {useHistory, useLocation} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 import {useQuery} from "react-query";
 
 const getDoctor = (id) => axios.get(`doctor/${id}`);

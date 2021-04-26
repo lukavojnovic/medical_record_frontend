@@ -4,9 +4,6 @@ import axios from "../axios";
 import {useHistory} from "react-router-dom"
 import {useQuery} from "react-query";
 import {notification} from 'antd';
-import moment from "moment";
-
-
 
 const getPatient = (id) => axios.get(`patient/${id}`);
 

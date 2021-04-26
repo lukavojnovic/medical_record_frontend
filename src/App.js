@@ -8,7 +8,6 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import NewPatientForm from "./components/NewPatientForm";
 import Login from "./components/Login";
 import EditPatientForm from "./components/EditPatientForm";
-import AdminDash from "./components/AdminDash";
 import AllDoctors from "./components/AllDoctors";
 import NewDoctorForm from "./components/NewDoctorForm";
 import EditDoctorForm from "./components/EditDoctorForm";
@@ -22,10 +21,7 @@ const App = () => {
             <QueryClientProvider client={queryClient}>
                 <Router>
                     <Switch>
-                        <Route path='/admin'>
-                            <Navigation />
-                            <AdminDash/>
-                        </Route>
+
                         <Route path='/patient/:id'>
                             <Navigation />
                             <Personal/>

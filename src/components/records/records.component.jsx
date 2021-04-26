@@ -1,11 +1,11 @@
 
 import { Row } from 'antd/lib/grid';
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { createArrayOfObjectForCards, getRecords } from '../../utils/utils';
 import { CardComponent } from '../card/card.component';
-
+import axios from '../../axios'
 
 export const Records = (props) => {
     const [data, setData] = useState([])
@@ -21,7 +21,7 @@ export const Records = (props) => {
 
                     Object.entries(data).map(([key, value]) => {
 
-                        return  <CardComponent type={key} value={value} children={value} id={props.id} />
+                        return  <CardComponent key={key} type={key} value={value} children={value} id={props.id} />
                     }
                     )}
             </Row>

@@ -1,8 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import axios from "../axios";
 import moment from 'moment';
-import doctorM from "../images/doctor-M.png";
-import doctorF from "../images/doctor-F.png";
 import {Table} from 'antd';
 import {queryClient} from '../App';
 import {DeleteTwoTone, EditTwoTone} from '@ant-design/icons';
