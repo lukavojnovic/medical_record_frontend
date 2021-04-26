@@ -13,7 +13,6 @@ const Login = message => {
         initialValues: {},
         onSubmit: async (values) => {
             values.password = sha256(values.password)
-            console.log(values.password)
             try {
                 const response = await axios.post('/login', { ...values });
 

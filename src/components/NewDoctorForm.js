@@ -13,14 +13,12 @@ const NewDoctorForm = () => {
     const onSubmit = async (values) => {
 
         try{
-            if(values.password !== ""){
-                values.password = sha256(values.password)
-            }
-            const res = await axios.post('doctor', {...values});
-            // console.log(res)
+
+            const res = await axios.post('doctor', {...values, password:sha256(values.password)});
             if (res.data.formError) {
                 setState(res.data.formError)
-                // console.log(state)
+            } else if(values.password === "") {
+                setState({...state, password: "Password can not be empty"})
             } else {
                 openNotification()
                 history.push(`/doctors`)

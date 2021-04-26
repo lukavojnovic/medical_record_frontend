@@ -16,7 +16,6 @@ const AllDoctors = () => {
     const doctors = useQuery('doctors', () => getAllDoctors());
 
     const handleDelete = async (id) => {
-        console.log(id)
         await axios.delete(`doctor/${id}`)
         await queryClient.invalidateQueries('doctors')
     }

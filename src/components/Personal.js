@@ -10,18 +10,8 @@ const getPatient = (id) => axios.get(`patient/${id}`);
 
 const Personal = () => {
 
-    // const [lastParam, setLastParam] = useState('')
-    //
-    // useEffect(()=>{
-    //     const parts = window.location.href.split('/');
-    //     const last = parts.pop() || parts.pop();
-    //     setLastParam(last)
-    //     // console.log(last ? last : "empty")
-    // },[])
-
-    // console.log(lastParam)
     const patient = useQuery('patient', () => getPatient(window.location.href.split('/').pop()));
-    // console.log(patient.data?.data)
+
     return (
         <div className="block sm:flex w-full mt-0 text-blue-900">
             <div className='min-h-screen justify-around xs:block p-2 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 bg-blue-100 '>
@@ -67,8 +57,7 @@ const Personal = () => {
             </div>
             </div>
             <div className='pl-2 w-full bg-gray-50'>
-                {patient?.data?.data.recordId ? <Records id={patient?.data?.data.recordId}/> : <>loading</>}
-                {/*<Records />*/}
+                {patient?.data?.data.recordId ? <Records id={patient?.data?.data.recordId}/> : <>ERROR</>}
             </div>
         </div>
 

@@ -14,25 +14,21 @@ const EditDoctorForm = () => {
         const parts = window.location.href.split('/');
         const last = parts.pop() || parts.pop();
         setLastParam(last)
-        // console.log(last ? last : "empty")
     },[])
     const history = useHistory();
 
     const doctor = useQuery('doctorEdit', () => getDoctor(window.location.href.split('/').pop()));
 
     const onSubmit = async (values) => {
-
-        console.log(values)
         const res = await axios.put(`doctor/${lastParam}`, {...values});
-        console.log(res)
         if (!res) {
             console.log("WENT WRONG")
             return
         }
-        // console.log("Successfully edited doctor")
         openNotification()
         history.push(`/doctors`)
     }
+
     const openNotification = () => {
         notification.success({
             message: `Success`,
@@ -41,6 +37,7 @@ const EditDoctorForm = () => {
             placement: "bottomRight"
         });
     };
+
     return (
         <>
             <Formik
@@ -59,7 +56,7 @@ const EditDoctorForm = () => {
                                     </div>
                                     <div className="relative flex justify-center text-sm leading-5">
                                         <span className="px-2 text-gray-500 bg-white">
-                                            Adding new doctor
+                                            Editing doctor
                                         </span>
                                     </div>
                                 </div>

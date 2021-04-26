@@ -16,7 +16,6 @@ const EditPatientForm = () => {
         const parts = window.location.href.split('/');
         const last = parts.pop() || parts.pop();
         setLastParam(last)
-        // console.log(last ? last : "empty")
     },[])
     const history = useHistory();
     const patient = useQuery('patientedit', () => getPatient(window.location.href.split('/').pop()));
@@ -26,15 +25,12 @@ const EditPatientForm = () => {
             const res = await axios.put(`patient/${lastParam}`, {...values});
             if (res.data.formError) {
                 setState(res.data.formError)
-                console.log(state)
                 return
             }
-
-            console.log(res)
             openNotification()
             history.push(`/doctor/${window.location.href.split('/')[4]}`)
         }catch (e){
-            console.log(e)
+            alert(e)
         }
     }
     const openNotification = () => {
@@ -46,21 +42,6 @@ const EditPatientForm = () => {
         });
     };
     return (
-        // "firstName": "John",
-        // "middleName": "Jack",
-        // "lastName": "Doe",
-        // "ssn": "000-00-0000",
-        // "address": "Highway St.",
-        // "city": "Atlanta",
-        // "state": "Georgia",
-        // "country": "USA",
-        // "dateOfBirth": "1995-02-12T00:00:00.000Z",
-        // "bloodGroup": "A+",
-        // "gender": "M",
-        // "phoneNumber": "00385951234567",
-        // "email": "johndoe@test.com",
-        // "weight": 75.6,
-        // "height": 195
         <>
             {openNotification}
 

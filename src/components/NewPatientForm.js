@@ -14,8 +14,7 @@ const NewPatientForm = () => {
     const onSubmit = async (values) => {
 
         try {
-            // console.log(values)
-            if(values.password !== ""){
+            if (values.password !== "") {
                 values.password = sha256(values.password)
             }
 
@@ -24,17 +23,14 @@ const NewPatientForm = () => {
             console.log(res.data.formError)
             if (res.data.formError) {
                 setState(res.data.formError)
-                console.log(state)
             } else {
-                console.log(res)
                 const patientId = res.data.id
                 const addDocToPat = await axios.put(`patient/${patientId}/doctor/${doctorId}`, {});
                 if (addDocToPat) {
                     openNotification()
-                    console.log('patient added to doctor')
                     history.push(`/doctor/${doctorId}`)
                 } else {
-                    console.log('failed adding doc to pat')
+                    alert('failed adding doc to pat')
                 }
             }
 
@@ -78,7 +74,7 @@ const NewPatientForm = () => {
                 onSubmit={onSubmit}
             >
 
-                {({values, handleChange,errors, touched}) => (
+                {({values, handleChange, errors, touched}) => (
                     <Form>
                         <div className=" sm:max-w-lg sm:w-full sm:mx-auto sm:overflow-hidden">
                             <div className="px-4 py-8 sm:px-10">
@@ -104,7 +100,8 @@ const NewPatientForm = () => {
                                                        name='firstName'
                                                        onChange={handleChange}
                                                 />
-                                                {state.firstName? <small className='italic text-red-600'>{state.firstName}</small> : <></>}
+                                                {state.firstName ? <small
+                                                    className='italic text-red-600'>{state.firstName}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -128,7 +125,8 @@ const NewPatientForm = () => {
                                                        name='lastName'
                                                        onChange={handleChange}
                                                 />
-                                                {state.lastName? <small className='italic text-red-600'>{state.lastName}</small> : <></>}
+                                                {state.lastName ? <small
+                                                    className='italic text-red-600'>{state.lastName}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -157,7 +155,8 @@ const NewPatientForm = () => {
                                                        name='ssn'
                                                        onChange={handleChange}
                                                 />
-                                                {state.ssn? <small className='italic text-red-600'>{state.ssn}</small> : <></>}
+                                                {state.ssn ?
+                                                    <small className='italic text-red-600'>{state.ssn}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -169,7 +168,8 @@ const NewPatientForm = () => {
                                                        name='address'
                                                        onChange={handleChange}
                                                 />
-                                                {state.address? <small className='italic text-red-600'>{state.address}</small> : <></>}
+                                                {state.address ? <small
+                                                    className='italic text-red-600'>{state.address}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -181,7 +181,8 @@ const NewPatientForm = () => {
                                                        name='city'
                                                        onChange={handleChange}
                                                 />
-                                                {state.city? <small className='italic text-red-600'>{state.city}</small> : <></>}
+                                                {state.city ?
+                                                    <small className='italic text-red-600'>{state.city}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -193,7 +194,8 @@ const NewPatientForm = () => {
                                                        name='state'
                                                        onChange={handleChange}
                                                 />
-                                                {state.state? <small className='italic text-red-600'>{state.state}</small> : <></>}
+                                                {state.state ? <small
+                                                    className='italic text-red-600'>{state.state}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -205,7 +207,8 @@ const NewPatientForm = () => {
                                                        name='country'
                                                        onChange={handleChange}
                                                 />
-                                                {state.country? <small className='italic text-red-600'>{state.country}</small> : <></>}
+                                                {state.country ? <small
+                                                    className='italic text-red-600'>{state.country}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -223,7 +226,8 @@ const NewPatientForm = () => {
                                                     <option value="AB-">AB-</option>
                                                     <option value="AB+">AB+</option>
                                                 </Field>
-                                                {state.bloodGroup? <small className='italic text-red-600'>{state.bloodGroup}</small> : <></>}
+                                                {state.bloodGroup ? <small
+                                                    className='italic text-red-600'>{state.bloodGroup}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -235,7 +239,8 @@ const NewPatientForm = () => {
                                                        name='dateOfBirth'
                                                        onChange={handleChange}
                                                 />
-                                                {state.dateOfBirth? <small className='italic text-red-600'>{state.dateOfBirth}</small> : <></>}
+                                                {state.dateOfBirth ? <small
+                                                    className='italic text-red-600'>{state.dateOfBirth}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -258,7 +263,8 @@ const NewPatientForm = () => {
                                                        name='email'
                                                        onChange={handleChange}
                                                 />
-                                                {state.email? <small className='italic text-red-600'>{state.email}</small> : <></>}
+                                                {state.email ? <small
+                                                    className='italic text-red-600'>{state.email}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
@@ -270,7 +276,8 @@ const NewPatientForm = () => {
                                                        name='password'
                                                        onChange={handleChange}
                                                 />
-                                                {state.password? <small className='italic text-red-600'>{state.password}</small> : <></>}
+                                                {state.password ? <small
+                                                    className='italic text-red-600'>{state.password}</small> : <></>}
                                             </div>
                                         </div>
                                         <div className="w-full">
