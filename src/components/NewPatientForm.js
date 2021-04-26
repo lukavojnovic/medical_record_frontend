@@ -19,8 +19,6 @@ const NewPatientForm = () => {
             }
 
             const res = await axios.post('patient', {...values});
-            console.log(values)
-            console.log(res.data.formError)
             if (res.data.formError) {
                 setState(res.data.formError)
             } else {
