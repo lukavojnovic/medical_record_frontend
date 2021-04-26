@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "../axios";
 import moment from 'moment';
-import {Table} from 'antd';
+import {notification, Table} from 'antd';
 import {queryClient} from '../App';
 import {DeleteTwoTone, EditTwoTone} from '@ant-design/icons';
 import {useQuery} from "react-query";
@@ -16,6 +16,7 @@ const AllDoctors = () => {
     const doctors = useQuery('doctors', () => getAllDoctors());
 
     const handleDelete = async (id) => {
+        console.log(id)
         await axios.delete(`doctor/${id}`)
         await queryClient.invalidateQueries('doctors')
     }
@@ -92,7 +93,7 @@ const AllDoctors = () => {
                         if (window.confirm("Are you sure you want to delete this doctor?")) {
                             handleDelete(record.id)
                                 .then((res) => {
-                                    console.log("succesful delete")
+                                    openNotification()
                                 })
                                 .catch((error) => console.log(error))
                         }
@@ -102,6 +103,15 @@ const AllDoctors = () => {
         }
 
     ];
+
+    const openNotification = () => {
+        notification.success({
+            message: `Success`,
+            description:
+                'Successfully deleted doctor!',
+            placement: "bottomRight"
+        });
+    };
 
     return (
         <div className="block sm:flex w-full min-h-screen mt-0 text-blue-900">

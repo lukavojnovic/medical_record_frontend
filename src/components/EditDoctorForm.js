@@ -3,6 +3,7 @@ import {Form, Formik, Field} from "formik"
 import axios from "../axios";
 import {useHistory} from "react-router-dom"
 import {useQuery} from "react-query";
+import {notification} from "antd";
 
 const getDoctor = (id) => axios.get(`doctor/${id}`);
 
@@ -28,26 +29,19 @@ const EditDoctorForm = () => {
             console.log("WENT WRONG")
             return
         }
-        console.log("Successfully edited doctor")
-        alert("Successfully edited doctor")
+        // console.log("Successfully edited doctor")
+        openNotification()
         history.push(`/doctors`)
     }
+    const openNotification = () => {
+        notification.success({
+            message: `Success`,
+            description:
+                'Successfully edited doctor!',
+            placement: "bottomRight"
+        });
+    };
     return (
-        // "firstName": "John",
-        // "middleName": "Jack",
-        // "lastName": "Doe",
-        // "ssn": "000-00-0000",
-        // "address": "Highway St.",
-        // "city": "Atlanta",
-        // "state": "Georgia",
-        // "country": "USA",
-        // "dateOfBirth": "1995-02-12T00:00:00.000Z",
-        // "bloodGroup": "A+",
-        // "gender": "M",
-        // "phoneNumber": "00385951234567",
-        // "email": "johndoe@test.com",
-        // "weight": 75.6,
-        // "height": 195
         <>
             <Formik
                 enableReinitialize
