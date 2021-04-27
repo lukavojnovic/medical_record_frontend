@@ -11,9 +11,9 @@ const getAllDoctors = () => axios.get('doctors');
 
 
 const AllDoctors = () => {
+
     const history = useHistory();
 
-   
     const doctors = useQuery('doctors', () => getAllDoctors());
 
     const handleDelete = async (id) => {

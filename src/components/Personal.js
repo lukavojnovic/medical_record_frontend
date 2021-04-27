@@ -5,13 +5,14 @@ import male from '../images/male.png'
 import female from '../images/female.png'
 import {useQuery} from "react-query";
 import {Records} from "./records/records.component";
+import { Spin } from 'antd';
+
 
 const getPatient = (id) => axios.get(`patient/${id}`);
 
 const Personal = () => {
 
     const patient = useQuery('patient', () => getPatient(window.location.href.split('/').pop()));
-
     return (
         <div className="block sm:flex w-full mt-0 text-blue-900">
             <div className='min-h-screen justify-around xs:block p-2 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 bg-blue-100 '>
@@ -56,8 +57,8 @@ const Personal = () => {
                 </div>
             </div>
             </div>
-            <div className='pl-2 w-full bg-gray-50'>
-                {patient?.data?.data.recordId ? <Records id={patient?.data?.data.recordId}/> : <>ERROR</>}
+            <div className='w-full bg-gray-50'>
+                {patient?.data?.data.recordId ? <Records recId={patient?.data?.data.recordId} patId={window.location.href.split('/').pop()}/> : <Spin />}
             </div>
         </div>
 

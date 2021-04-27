@@ -11,8 +11,10 @@ export const Records = (props) => {
     const [data, setData] = useState([])
     // <RecordData.Provider value={{data,value,setData}}>{
     useEffect(() => {
-        getRecords(props.id).then(response => { setData(createArrayOfObjectForCards( response.data)); })
+        console.log(props.id)
+        getRecords(props.recId, props.patId).then(response => { setData(createArrayOfObjectForCards( response.data)); })
     }, [])
+    console.log(data)
   //  const { isLoading, error, data, refetch } = useQuery('fetchRecords', () => axios.get('http://localhost:4321/record/af382e09-3ed1-4f07-9c66-e0454ca7fe14').then(response => createArrayOfObjectForCards(response.data)))
     return (
         <div className="records">
@@ -21,7 +23,7 @@ export const Records = (props) => {
 
                     Object.entries(data).map(([key, value]) => {
 
-                        return  <CardComponent key={key} type={key} value={value} children={value} id={props.id} />
+                        return  <CardComponent key={key} type={key} value={value} children={value} id={props.recId} />
                     }
                     )}
             </Row>

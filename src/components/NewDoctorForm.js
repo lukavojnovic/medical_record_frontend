@@ -13,7 +13,6 @@ const NewDoctorForm = () => {
     const onSubmit = async (values) => {
 
         try{
-
             const res = await axios.post('doctor', {...values, password:sha256(values.password)});
             if (res.data.formError) {
                 setState(res.data.formError)

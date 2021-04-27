@@ -2,9 +2,12 @@ import axios from 'axios';
 
 let token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).token : "No token";
 
-export const getRecords = async (recordId) => {
+export const getRecords = async (recordId, patientId) => {
     try {
-        return await axios.get('http://localhost:4321/record/' + recordId,
+        console.log(recordId)
+        console.log(patientId)
+
+        return await axios.get('http://localhost:4321/record/' + recordId + '/patient/' + patientId,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -18,7 +21,7 @@ export const getRecords = async (recordId) => {
 export const updateData = (data, record, type) => {
     let splittedType = splitForCards(type);
     let splittedDate;
-
+console.log(record);
     if (record.date) { splittedDate = record.date.split('T')[0]; }
     if (splittedType === "allergy") {
         return [...data, { id: record.id, name: record.name }]
@@ -41,6 +44,7 @@ export const updateData = (data, record, type) => {
 
 export const setRecord = async (recordId, type, record) => {
     let properType = splitForCards(type);
+
     if (properType === "diagnosis" || properType === "immunization") {
         try {
             let response = await axios.post(`http://localhost:4321/${properType}/` + recordId, {

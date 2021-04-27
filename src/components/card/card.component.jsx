@@ -21,7 +21,7 @@ export const CardComponent = ({ type, value, children, id }) => {
     const [date, setDate] = useState(moment());
     const [name, setName] = useState('');
     const [prescription, setPrescription] = useState('');
-
+console.log("THIS IS "+ id);
     function onChange(date, dateString) {
         setDate(dateString);
 
@@ -86,6 +86,7 @@ export const CardComponent = ({ type, value, children, id }) => {
                 title: 'Date',
                 dataIndex: 'date',
                 key: 'date',
+                render: d => moment(new Date(d)).format("YYYY-MM-DD")
             },
 
             {
@@ -143,6 +144,8 @@ export const CardComponent = ({ type, value, children, id }) => {
                 title: 'Date',
                 dataIndex: 'date',
                 key: 'date',
+                render: d => moment(new Date(d)).format("YYYY-MM-DD")
+
             },
             ROLE === "PATIENT" ? { title: 'Action' } : {
                 title: 'Action',
